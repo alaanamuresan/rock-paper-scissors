@@ -8,21 +8,27 @@
 <body>
     <script>
         function getComputerChoice() {
-            random_choice = Math.random()
-            console.log(random_choice)
+            let computerChoice = Math.random()
 
-            if (random_choice <= 0.33) {
+            if (computerChoice <= 0.33) {
                 return 'rock'
             }
 
-            else if (random_choice > 0.33 && random_choice <= 0.66) {
+            else if (computerChoice > 0.33 && computerChoice <= 0.66) {
                 return 'paper'
             }
 
-            else if (0.66 < random_choice) {
+            else if (0.66 < computerChoice) {
                 return 'scissors'
             }
         }
+
+        function getHumanChoice() {
+            let humanChoice = prompt("Enter your choice: ")
+            return humanChoice
+        }
+
+        console.log(getHumanChoice())
     </script>
 </body>
 </html>
