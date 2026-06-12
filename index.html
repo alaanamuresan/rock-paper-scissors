@@ -7,7 +7,22 @@
 </head>
 <body>
     <script>
-        console.log("Hello, world!")
+        function getComputerChoice() {
+            random_choice = Math.random()
+            console.log(random_choice)
+
+            if (random_choice <= 0.33) {
+                return 'rock'
+            }
+
+            else if (random_choice > 0.33 && random_choice <= 0.66) {
+                return 'paper'
+            }
+
+            else if (0.66 < random_choice) {
+                return 'scissors'
+            }
+        }
     </script>
 </body>
 </html>
