@@ -7,8 +7,11 @@
 </head>
 <body>
     <script>
+        let computerScore = 0;
+        let humanScore = 0;
+
         function getComputerChoice() {
-            let computerChoice = Math.random()
+            let computerChoice = Math.random();
 
             if (computerChoice <= 0.33) {
                 return 'rock'
@@ -24,11 +27,106 @@
         }
 
         function getHumanChoice() {
-            let humanChoice = prompt("Enter your choice: ")
+            let humanChoice = prompt("Enter your choice: ");
             return humanChoice
         }
 
-        console.log(getHumanChoice())
+        function roundVictory(computerChoice, humanChoice) {
+            let roundVictoryMessage = `You won - ${humanChoice} beats ${computerChoice}.`
+            console.log(roundVictoryMessage);
+            humanScore++;
+        }
+
+        function roundLoss(computerChoice, humanChoice) {
+            let roundLossMessage = `You lost - ${computerChoice} beats ${humanChoice}.`
+            console.log(roundLossMessage);
+            computerScore++;
+            
+        }
+
+        function playRound(computerChoice, humanChoice) {
+            let parsedComputerChoice = computerChoice.toLowerCase()
+            let parsedHumanChoice = humanChoice.toLowerCase()
+
+            if (parsedComputerChoice === parsedHumanChoice) {
+                console.log('It\'s a tie.');
+            }
+
+            else if (parsedComputerChoice === 'rock') {
+                if (parsedHumanChoice === 'paper') {
+                   roundVictory(parsedComputerChoice, parsedHumanChoice);
+                }
+
+                if (parsedHumanChoice === 'scissors') {
+                   roundLoss(parsedComputerChoice, parsedHumanChoice);
+                }
+            }
+
+            else if (parsedComputerChoice === 'paper') {
+                if (parsedHumanChoice === 'scissors') {
+                    roundVictory(parsedComputerChoice, parsedHumanChoice);
+                }
+
+                if (parsedHumanChoice === 'rock') {
+                   roundLoss(parsedComputerChoice, parsedHumanChoice);
+                }
+            }
+            
+            else if (parsedComputerChoice === 'scissors') {
+                if (parsedHumanChoice === 'rock') {
+                    roundVictory(parsedComputerChoice, parsedHumanChoice);
+                }
+                
+                if (parsedHumanChoice === 'paper') {
+                    roundLoss(parsedComputerChoice, parsedHumanChoice);
+                }
+            }
+        }
+
+        function playGame() {
+            let computerChoice = getComputerChoice();
+            let humanChoice = getHumanChoice();
+
+            playRound(computerChoice, humanChoice);
+
+            computerChoice = getComputerChoice();
+            humanChoice = getHumanChoice();
+
+            playRound(computerChoice, humanChoice);
+
+            computerChoice = getComputerChoice();
+            humanChoice = getHumanChoice();
+
+            playRound(computerChoice, humanChoice);
+
+            computerChoice = getComputerChoice();
+            humanChoice = getHumanChoice();
+
+            playRound(computerChoice, humanChoice);
+
+            computerChoice = getComputerChoice();
+            humanChoice = getHumanChoice();
+
+            playRound(computerChoice, humanChoice);
+
+            let lossMessage = `You lose. The final score is: \nComputer - ${computerScore} : ${humanScore} - Player`
+            let victoryMessage = `You win! The final score is: \nComputer - ${computerScore} : ${humanScore} - Player`
+            let tieMessage = `It's a tie. The final score is: \nComputer - ${computerScore} : ${humanScore} - Player`
+
+            if (computerScore > humanScore) {
+                console.log(lossMessage);
+            }
+
+            else if (humanScore > computerScore) {
+                console.log(victoryMessage);
+            }
+
+            else if (computerScore === humanScore) {
+                console.log(tieMessage)
+            }
+        }
+
+        playGame();
     </script>
 </body>
 </html>
